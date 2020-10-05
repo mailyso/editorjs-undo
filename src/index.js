@@ -189,7 +189,7 @@ export default class Undo {
     };
 
     const handleRedo = (e) => {
-      if (e[buttonKey] && e.key === 'y') {
+      if (e[buttonKey] && e.shiftKey && e.key === 'z') {
         e.preventDefault();
         this.redo();
       }
