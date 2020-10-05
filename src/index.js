@@ -184,24 +184,20 @@ export default class Undo {
     const handleUndo = (e) => {
       if (e[buttonKey] && e.key === 'z') {
         e.preventDefault();
-        this.undo();
-      }
-    };
-
-    const handleRedo = (e) => {
-      if (e[buttonKey] && e.shiftKey && e.key === 'z') {
-        e.preventDefault();
-        this.redo();
+        
+        if (e.shiftKey) {
+          this.redo();
+        } else {
+          this.undo();
+        }
       }
     };
 
     const handleDestroy = () => {
       document.removeEventListener('keydown', handleUndo);
-      document.removeEventListener('keydown', handleRedo);
     };
 
     document.addEventListener('keydown', handleUndo);
-    document.addEventListener('keydown', handleRedo);
     document.addEventListener('destroy', handleDestroy);
   }
 }
